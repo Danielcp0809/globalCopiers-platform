@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { CoreModule } from './core/core.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,45 @@
-<router-outlet></router-outlet>
+
+<div class="container">
+    <div class="layout-container">
+        <div class="menu">
+            <div class="header-menu">
+                <h3>Bienvenido,</h3>
+                <h2>{{authService.userData.displayName | displayName }}</h2>
+            </div>
+            <div class="menu-options">
+                <ul>
+                    <li mat-ripple class="option active">
+                        <span class="material-icons">perm_identity</span>
+                        <div class="option-label"><h3>Empresas</h3></div>
+                    </li>
+    
+                    <li mat-ripple  class="option">
+                        <span class="material-icons">settings</span>
+                        <div class="option-label"><h3>Dashboard</h3></div>
+                    </li>
+                    <li mat-ripple  class="option">
+                        <span class="material-icons">settings</span>
+                        <div class="option-label"><h3>Dashboard</h3></div>
+                    </li>
+                </ul>
+
+                <!-- <div mat-ripple class="option active">
+                    <span class="material-icons">perm_identity</span>
+                    <div class="option-label"><h3>Empresas</h3></div>
+                </div>
+                <div mat-ripple class="option ">
+                    <span class="material-icons">settings</span>
+                    <div class="option-label"><h3>Dashboard</h3></div>
+                </div> -->
+            </div>
+        </div>
+        <div class="content">
+            <div class="header-content">
+                <app-header></app-header>
+            </div>
+            <div class="body-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

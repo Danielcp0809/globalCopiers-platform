@@ -12,7 +12,11 @@ userData: any
   constructor(
     private angularFireAuth: AngularFireAuth,
     private angularFireStorage: AngularFirestore
-  ) { }
+  ) {
+    if(localStorage.getItem('user')){
+      this.userData = JSON.parse(localStorage.getItem('user') || '')
+    }
+  }
 
   createUser(email: string, password: string){
     return this.angularFireAuth.createUserWithEmailAndPassword(email, password)
@@ -28,6 +32,7 @@ userData: any
   }
 
   logout(){
+    localStorage.removeItem('user');
     return this.angularFireAuth.signOut();
   }
 
@@ -38,4 +43,5 @@ userData: any
   getInfoUser(uid: string | undefined){
     return this.angularFireStorage.collection('users').doc(uid).valueChanges()
   }
+
 }

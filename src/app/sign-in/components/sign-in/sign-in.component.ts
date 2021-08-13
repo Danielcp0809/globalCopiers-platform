@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
           const userData = this.authService.getInfoUser(result.user?.uid).subscribe(
             (res: any)=>{
               if(res){
+                localStorage.setItem('user',JSON.stringify(res));
                 this.router.navigate([`${res.userType}`])
               }
             })
