@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Route } from 'src/app/core/models/route.model';
+import { AppService } from 'src/app/core/services/app/app.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -11,8 +13,15 @@ export class EnterprisesListComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    public appService: AppService
+  ) { 
+    this.appService.routes = [{
+      name:'Empresas',
+      url:'/enterprice'
+    }]
+  }
+
 
   ngOnInit(): void {
   }

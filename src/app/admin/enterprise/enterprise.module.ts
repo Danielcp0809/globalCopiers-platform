@@ -6,6 +6,7 @@ import { EnterprisesListComponent } from './components/enterprises-list/enterpri
 import { EnterpriseDetailComponent } from './components/enterprise-detail/enterprise-detail.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { MachinesListComponent } from './components/machines-list/machines-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,11 +14,12 @@ import { MachinesListComponent } from './components/machines-list/machines-list.
     EnterprisesListComponent,
     EnterpriseDetailComponent,
     UsersListComponent,
-    MachinesListComponent
+    MachinesListComponent,
   ],
   imports: [
     CommonModule,
-    EnterpriseRoutingModule
+    EnterpriseRoutingModule,
+    SharedModule
   ]
 })
 export class EnterpriseModule { }

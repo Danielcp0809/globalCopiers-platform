@@ -11,6 +11,8 @@ import { CoreModule } from './core/core.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { SharedModule } from './shared/shared.module';
+import { AuthService } from './core/services/auth.service';
+import { AppService } from './core/services/app/app.service';
 
 
 @NgModule({
@@ -28,7 +30,10 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AppService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

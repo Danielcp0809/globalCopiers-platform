@@ -8,8 +8,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LayoutComponent implements OnInit {
 
+  route = 'Empresas / Angular form'
+
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
   ) { }
 
   ngOnInit(): void {

@@ -1,0 +1,42 @@
+.container{
+    width: 100%;
+    min-height: 100px;
+    border-bottom: solid 1px var(--color_1);
+}
+
+.header-container{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.routes{
+    display: flex;
+    height: 100%;
+    margin-left: 10px;
+    ul{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        padding-top: 30px;
+        li{
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary_color);
+        }
+    }
+}
+
+.active{
+    color: var(--color_1)
+}
+
+.logo{
+    img{
+        height: 90px;
+    }
+}
