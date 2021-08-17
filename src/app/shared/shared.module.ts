@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { DisplayNamePipe } from './pipes/displayName/display-name.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { TableComponent } from './components/table/table.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     DisplayNamePipe,
     HeaderComponent,
-    TableComponent
+    TableComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { TableComponent } from './components/table/table.component';
   exports: [
     DisplayNamePipe,
     HeaderComponent,
-    TableComponent
+    TableComponent,
+    ModalComponent
   ]
 })
 export class SharedModule {}

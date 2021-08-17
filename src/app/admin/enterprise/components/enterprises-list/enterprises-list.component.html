@@ -12,7 +12,7 @@
                 </form>
             </div>
             <div class="action-button">
-                <div mat-ripple class="button_primary">
+                <div mat-ripple class="button_primary" (click)="openMyModal('new-enterprise')">
                     <p>Agregar empresa</p>
                 </div>
             </div>
@@ -20,3 +20,29 @@
         <app-table [initialData]="initialData" [titles]="titles" [actions]="actions"></app-table>
     </div>
 </div>
+
+<app-modal [modalID]="'new-enterprise'" [modalClass]="'md-effect-1'">
+    <div class="modal-header">
+        <h3>Agregar empresa</h3>
+        <button class="md-close" (click)="closeMyModal('new-enterprise')">CERRAR</button>
+    </div>
+    <div class="modal-content">
+        <div class="form-container">
+            <form>
+                <div class="input_field">
+                    <label>NOMBRE</label>
+                    <input type="text" placeholder="Ingrese el nombre de la empresa">
+                </div>
+                <div class="input_field">
+                    <label>CIUDAD</label>
+                    <input type="text" placeholder="Ingrese la cuidad">
+                </div>
+                <div class="input_field">
+                    <label>SECTOR</label>
+                    <input type="text" placeholder="Ingrese el sector">
+                </div>
+            </form>
+            <div mat-ripple class="button_primary md-close" (click)="closeMyModal('new-enterprise')"><p>Agregar</p></div>
+        </div>
+    </div>
+</app-modal>

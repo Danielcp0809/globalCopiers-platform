@@ -79,4 +79,12 @@ export class EnterprisesListComponent implements OnInit {
     this.router.navigate(['sign-in'])
   }
 
+  openMyModal(event: any) {
+    document.querySelector('#' + event)?.classList.add('md-show');
+  }
+
+  closeMyModal(event: any) {
+    document.querySelector('#' + event)?.classList.remove('md-show');
+  }
+
 }
