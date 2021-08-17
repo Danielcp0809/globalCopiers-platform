@@ -1,5 +1,24 @@
 <div class="conatainer">
     <div class="table-container">
-        table works
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th *ngFor="let title of data.titles" >{{title| titlecase}}</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of data.data; index as i">
+                    <td class="text-centered">{{i+1}}</td>
+                    <td *ngFor="let column of row" [ngClass]="{'text-centered': true}">{{column}}</td>
+                    <td class="text-centered">
+                        <span *ngIf="data.actions.enable" class="material-icons">visibility_off</span>
+                        <span *ngIf="data.actions.delete" class="material-icons" (click)="delete(i)">delete</span>
+                        <span *ngIf="data.actions.edit" class="material-icons">edit</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

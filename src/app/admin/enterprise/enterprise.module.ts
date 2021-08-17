@@ -7,6 +7,7 @@ import { EnterpriseDetailComponent } from './components/enterprise-detail/enterp
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { MachinesListComponent } from './components/machines-list/machines-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     EnterpriseRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ]
 })
 export class EnterpriseModule { }

@@ -1,3 +1,22 @@
 <!-- <p>enterprises-list works!</p>
 <button (click)='logOut()'>Salir</button> -->
-<app-table></app-table>
+
+<div class="container">
+    <div class="list-container">
+        <div class="header">
+            <div class="search-field">
+                <form action="">
+                    <div class="input_field">
+                        <input type="search" placeholder="Buscar">
+                    </div>
+                </form>
+            </div>
+            <div class="action-button">
+                <div mat-ripple class="button_primary">
+                    <p>Agregar empresa</p>
+                </div>
+            </div>
+        </div>
+        <app-table [initialData]="initialData" [titles]="titles" [actions]="actions"></app-table>
+    </div>
+</div>

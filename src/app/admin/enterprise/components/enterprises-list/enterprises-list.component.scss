@@ -1,0 +1,26 @@
+.container{
+    padding: 20px;
+}
+
+.header{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-field{
+    max-width: 400px;
+    min-width: 300px
+
+}
+
+.input_field input{
+    border: solid 1px gray;
+}
+
+.input_field input:focus{
+    border: 2px solid var(--color_1);
+    height: 44px;
+}
