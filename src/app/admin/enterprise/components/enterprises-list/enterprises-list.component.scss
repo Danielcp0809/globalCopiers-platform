@@ -30,6 +30,22 @@
     height: 44px;
 }
 
+.input_errors{
+    p{
+        margin: 0px;
+        color: red;
+        font-weight: 400;
+    }
+}
+
+.input_field_error{
+    border: 1px solid red !important;
+}
+
+.input_field_correct{
+    border: 1px solid var(--color_1) !important;
+}
+
 .modal-content{
     display: flex;
     justify-content: center;
@@ -44,3 +60,24 @@
 .button_primary{
     margin:0px auto;
 }
+
+.active{
+    color: var(--color_1)
+}
+
+.default{
+    color: gray
+}
+
+.state{
+    font-size: 45px;
+}
+
+.enterprise-name{
+    cursor: pointer;
+}
+.enterprise-name:hover{
+    color:var(--primary_color);
+    text-decoration: underline;
+}
+

@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user.model';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { MyValidators } from 'src/app/utils/validators/validators';
 
 

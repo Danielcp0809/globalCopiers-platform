@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTooltipModule
   ],
   exports:[
     FormsModule,
@@ -25,7 +28,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

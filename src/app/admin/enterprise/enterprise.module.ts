@@ -8,6 +8,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { MachinesListComponent } from './components/machines-list/machines-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { MaterialModule } from 'src/app/material/material.module';
     CommonModule,
     EnterpriseRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class EnterpriseModule { }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { actions, dataTable, titleTable } from 'src/app/core/models/dataTable.model';
 
 @Component({
@@ -6,13 +6,15 @@ import { actions, dataTable, titleTable } from 'src/app/core/models/dataTable.mo
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
 
   @Input() initialData!: any[]
 
   @Input() titles!: titleTable[]
 
   @Input() actions!: actions
+
+  @Input() noDataMessage!: string
 
 
   public data: dataTable = {
@@ -29,11 +31,19 @@ export class TableComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges){
+    this.initialData = changes.initialData.currentValue,
     this.transformData()
+    console.log(this.initialData)
+  }
+
+  ngOnInit(): void {
+    
   }
 
   transformData(){
+    console.log(this.titles);
+    console.log(this.initialData)
     this.data.titles = this.titles.map((title)=>{
       return title.displayName
     }) 

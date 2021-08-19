@@ -1,6 +1,6 @@
-<div class="conatainer">
+<div class="container">
     <div class="table-container">
-        <table>
+        <table *ngIf="initialData.length!==0">
             <thead>
                 <tr>
                     <th>Número</th>
@@ -14,11 +14,14 @@
                     <td *ngFor="let column of row" [ngClass]="{'text-centered': true}">{{column}}</td>
                     <td class="text-centered">
                         <span *ngIf="data.actions.enable" class="material-icons">visibility_off</span>
-                        <span *ngIf="data.actions.delete" class="material-icons" (click)="delete(i)">delete</span>
                         <span *ngIf="data.actions.edit" class="material-icons">edit</span>
+                        <span *ngIf="data.actions.delete" class="material-icons" (click)="delete(i)">delete</span>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="no-data" *ngIf="initialData.length==0">
+            <h1>{{noDataMessage}}</h1>
+        </div>
     </div>
 </div>

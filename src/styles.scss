@@ -69,7 +69,7 @@ body { margin: 0; font-family: var(--font_family) }
         color: rgb(71, 71, 71);
     }
 }
-
+///////// SPINER //////////////
 .loading_spinner{
     border: 10px solid #ccc;
     border-top-color: var(--color_1);
@@ -84,4 +84,63 @@ body { margin: 0; font-family: var(--font_family) }
     from{ transform: rotate(0deg);}
     to{ transform: rotate(360deg);}
 }
+
+////////// TABLE STYLES //////////
+.table-container{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .no-data{
+        h1{
+            font-size: 20px;
+            color: rgba(82, 82, 82, 0.938);;
+        }
+    }
+}
+
+.table-container table{
+    width: 100%;
+    border-spacing: 0;
+    td, th{
+        max-width: 300px;
+        height: 50px;
+        border-top: solid 1px gray;
+        border-spacing: 0px;
+        span{
+            margin: 0px 5px;
+            color: rgba(82, 82, 82, 0.938);
+            cursor: pointer;
+        }
+    }
+    tr:last-child{
+        td{
+            border-bottom: solid 1px gray;
+        }
+    }
+
+}
+
+.text-centered{
+    text-align: center;
+}
+
+.label{
+    border-radius: 4px;
+    font-size: 75%;
+    padding: 4px 7px;
+    margin-right: 5px;
+    font-weight: 400;
+    color: #fff!important;
+}
+
+.label-success{
+    background-color: var(--color_1);
+}
+
+.label-default{
+    background-color: gray;
+}
+
+
 
