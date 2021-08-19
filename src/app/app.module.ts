@@ -11,9 +11,10 @@ import { CoreModule } from './core/core.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { SharedModule } from './shared/shared.module';
-import { AuthService } from './core/services/auth.service';
+import { AuthService } from './core/services/auth/auth.service';
 import { AppService } from './core/services/app/app.service';
-
+import { EnterpriseService } from './core/services/enterprise/enterprise.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,14 @@ import { AppService } from './core/services/app/app.service';
     AngularFireAuthModule,
     AngularFireStorageModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [
+    EnterpriseService,
     AuthService,
     AppService
   ],

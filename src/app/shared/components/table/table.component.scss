@@ -1,6 +1,15 @@
 
 .table-container{
     padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .no-data{
+        h1{
+            font-size: 20px;
+            color: rgba(82, 82, 82, 0.938);;
+        }
+    }
 }
 
 .table-container table{
@@ -22,6 +31,7 @@
             border-bottom: solid 1px gray;
         }
     }
+
 }
 
 .text-centered{

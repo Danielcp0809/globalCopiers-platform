@@ -5,11 +5,9 @@
     <div class="list-container">
         <div class="header">
             <div class="search-field">
-                <form action="">
-                    <div class="input_field">
-                        <input type="search" placeholder="Buscar">
-                    </div>
-                </form>
+                <div class="input_field">
+                    <input type="search" placeholder="Buscar" [(ngModel)]="filterEnterprise">
+                </div>
             </div>
             <div class="action-button">
                 <div mat-ripple class="button_primary" (click)="openMyModal('new-enterprise')">
@@ -17,7 +15,56 @@
                 </div>
             </div>
         </div>
-        <app-table [initialData]="initialData" [titles]="titles" [actions]="actions"></app-table>
+        <!-- <app-table [initialData]="enterprises" [titles]="titles" [actions]="actions" [noDataMessage]="'No hay empresas'"></app-table> -->
+        <div class="table-container">
+            <table *ngIf="enterprises.length!==0">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th *ngFor="let title of titles" >{{title| titlecase}}</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of enterprises | filter:filterEnterprise ; index as i ">
+                        <td class="text-centered">{{i+1}}</td>
+                        <td 
+                            class="enterprise-name text-centered" 
+                            matTooltip="Ver empresa" 
+                            routerLink="{{row.id}}">{{row.name}}
+                        </td>
+                        <td class="text-centered">{{row.city}} / {{row.sector}}</td>
+                        <td *ngIf="row.isActive" class="text-centered">
+                            <!-- <label class="label label-success">Activo</label> -->
+                            <span
+                                (click)="editEnterpriseState(row.id, row.isActive)"
+                                matTooltip="Activo" 
+                                matTooltipPosition='right' 
+                                class="material-icons active state">toggle_on
+                            </span>
+                        </td>
+                        <td *ngIf="!row.isActive" class="text-centered">
+                            <!-- <label class="label label-default">Inactivo</label> -->
+                            <span
+                                (click)="editEnterpriseState(row.id, row.isActive)"
+                                matTooltip="Inactivo"
+                                matTooltipPosition='right' 
+                                class="material-icons default state">toggle_off
+                            </span>
+                        </td>
+                        <td class="text-centered">{{row.machines}}</td>
+                        <td class="text-centered">
+                            <!-- <span matTooltip="Activar" class="material-icons">visibility_off</span> -->
+                            <span matTooltip="Editar" class="material-icons" (click)="openModaledit(row)">edit</span>
+                            <span matTooltip="Eliminar" class="material-icons" (click)="deleteEnterprise(row.id)">delete</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no-data" *ngIf="enterprises.length==0">
+                <h1>{{noDataMessage}}</h1>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -28,21 +75,46 @@
     </div>
     <div class="modal-content">
         <div class="form-container">
-            <form>
+            <form [formGroup]="newEnterpriseForm">
                 <div class="input_field">
                     <label>NOMBRE</label>
-                    <input type="text" placeholder="Ingrese el nombre de la empresa">
+                    <input 
+                        [class.input_field_error]="nameField?.invalid && nameField?.touched" 
+                        [class.input_field_correct]="nameField?.valid && nameField?.touched" 
+                        formControlName="name" 
+                        type="text" 
+                        placeholder="Ingrese el nombre de la empresa">
+                    <div class="input_errors" *ngIf="nameField?.touched">
+                        <p *ngIf="nameField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
                 </div>
                 <div class="input_field">
                     <label>CIUDAD</label>
-                    <input type="text" placeholder="Ingrese la cuidad">
+                    <input 
+                        [class.input_field_error]="cityField?.invalid && cityField?.touched" 
+                        [class.input_field_correct]="cityField?.valid && cityField?.touched" 
+                        formControlName="city" 
+                        type="text" 
+                        placeholder="Ingrese la cuidad">
+                    <div class="input_errors" *ngIf="cityField?.touched">
+                        <p *ngIf="cityField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
                 </div>
                 <div class="input_field">
                     <label>SECTOR</label>
-                    <input type="text" placeholder="Ingrese el sector">
+                    <input 
+                        [class.input_field_error]="sectorField?.invalid && sectorField?.touched" 
+                        [class.input_field_correct]="sectorField?.valid && sectorField?.touched" 
+                        formControlName="sector" 
+                        type="text" 
+                        placeholder="Ingrese el sector">
+                    <div class="input_errors" *ngIf="sectorField?.touched">
+                        <p *ngIf="sectorField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
                 </div>
             </form>
-            <div mat-ripple class="button_primary md-close" (click)="closeMyModal('new-enterprise')"><p>Agregar</p></div>
+            <div *ngIf="!isEditing" mat-ripple class="button_primary md-close" (click)="submitForm($event)"><p>Agregar</p></div>
+            <div *ngIf="isEditing" mat-ripple class="button_primary md-close" (click)="editEnterprise($event)"><p>Actualizar</p></div>
         </div>
     </div>
 </app-modal>
