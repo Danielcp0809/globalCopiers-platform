@@ -17,7 +17,7 @@
         </div>
         <!-- <app-table [initialData]="enterprises" [titles]="titles" [actions]="actions" [noDataMessage]="'No hay empresas'"></app-table> -->
         <div class="table-container">
-            <table *ngIf="enterprises.length!==0">
+            <table *ngIf="enterprises.length!==0" class="table">
                 <thead>
                     <tr>
                         <th>Número</th>
@@ -27,14 +27,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let row of enterprises | filter:filterEnterprise ; index as i ">
-                        <td class="text-centered">{{i+1}}</td>
-                        <td 
+                        <td data-label="Número" class="text-centered">{{i+1}}</td>
+                        <td data-label="Nombre"
                             class="enterprise-name text-centered" 
                             matTooltip="Ver empresa" 
                             routerLink="{{row.id}}">{{row.name}}
                         </td>
-                        <td class="text-centered">{{row.city}} / {{row.sector}}</td>
-                        <td *ngIf="row.isActive" class="text-centered">
+                        <td data-label="Ubicación" class="text-centered">{{row.city}} / {{row.sector}}</td>
+                        <td data-label="Estado" *ngIf="row.isActive" class="text-centered">
                             <!-- <label class="label label-success">Activo</label> -->
                             <span
                                 (click)="editEnterpriseState(row.id, row.isActive)"
@@ -43,7 +43,7 @@
                                 class="material-icons active state">toggle_on
                             </span>
                         </td>
-                        <td *ngIf="!row.isActive" class="text-centered">
+                        <td data-label="Estado" *ngIf="!row.isActive" class="text-centered">
                             <!-- <label class="label label-default">Inactivo</label> -->
                             <span
                                 (click)="editEnterpriseState(row.id, row.isActive)"
@@ -52,12 +52,13 @@
                                 class="material-icons default state">toggle_off
                             </span>
                         </td>
-                        <td class="text-centered">{{row.machines}}</td>
-                        <td class="text-centered">
-                            <!-- <span matTooltip="Activar" class="material-icons">visibility_off</span> -->
+                        <td data-label="Equipos" class="text-centered">{{row.machines}}</td>
+                        <td data-label="Acciones" class="text-centered">
+                            <!-- <span matTooltip="Activar" class="material-icons">visibility_off</span> -->                            
                             <span matTooltip="Editar" class="material-icons" (click)="openModaledit(row)">edit</span>
                             <span matTooltip="Eliminar" class="material-icons" (click)="deleteEnterprise(row.id)">delete</span>
                         </td>
+                        <div routerLink="{{row.id}}" mat-ripple class="button_primary responsive_button"><p>Ver empresa</p></div>
                     </tr>
                 </tbody>
             </table>

@@ -6,7 +6,7 @@
 .layout-container{
     display: flex;
     flex-direction: row;
-    min-height: 94vh;
+    min-height: 100vh;
 }
 
 .header-responsive{
@@ -109,14 +109,20 @@
 
 @media(max-width:900px){
     .layout-container{
+        padding-top: 50px;
         overflow: hidden;
         position: relative;
+        min-height: 94vh;
     }
     .header-responsive{
         display: flex;
+        position: fixed;
+        z-index: 9;
+        width: 100%;
     }
     .menu{
-        position: absolute;
+        position: fixed;
+        top:50px;
         z-index: 10;
         max-width: 300px;
         transform: translateX(-300px);

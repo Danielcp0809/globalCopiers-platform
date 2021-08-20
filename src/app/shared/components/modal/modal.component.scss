@@ -126,3 +126,10 @@
     transform: scale(1);
     opacity: 1;
   }
+
+
+  @media(max-width:700px){
+    .md-modal{
+      max-width: 100%;
+    }
+  }
