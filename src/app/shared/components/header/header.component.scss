@@ -40,3 +40,22 @@
         height: 90px;
     }
 }
+
+@media(max-width:600px){
+
+    .container{
+        min-height: 50px;
+    }
+    .logo{
+        display: none;
+    }
+    .routes{
+        margin-left: 0px;
+        ul{
+            padding: 0px;
+            li{
+                font-size: 18px;
+            }
+        }
+    }
+}
