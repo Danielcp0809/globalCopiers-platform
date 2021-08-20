@@ -1,7 +1,11 @@
 
 <div class="container">
+    <div class="header-responsive">
+        <span class="material-icons" (click)="toogleNavMenu()">menu</span>
+        <img src="assets/images/logos/LOGO-TRANSPARENTE.png" alt="">
+    </div>
     <div class="layout-container">
-        <div class="menu">
+        <div class="menu" id='menu'>
             <div class="header-menu">
                 <h3>Bienvenido,</h3>
                 <h2>{{authService.userData.displayName | displayName }}</h2>

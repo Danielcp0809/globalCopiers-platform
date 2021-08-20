@@ -17,4 +17,16 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toogleNavMenu(){
+    document.querySelector('#menu')?.classList.toggle('nav-show');
+  }
+
+  openNavMenu(){
+    document.querySelector('#menu')?.classList.add('nav-show');
+  }
+
+  closeNavMenu(){
+    document.querySelector('#menu')?.classList.remove('nav-show');
+  }
+
 }
