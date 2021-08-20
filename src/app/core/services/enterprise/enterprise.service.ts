@@ -29,4 +29,8 @@ export class EnterpriseService {
   updateEnterprise(id: string, data: any){
     return this.firestore.collection('enterprises').doc(id).update(data);
   }
+
+  getEnterprise(id: string):Observable<any>{
+    return this.firestore.collection('enterprises').doc(id).snapshotChanges()
+  }
 }

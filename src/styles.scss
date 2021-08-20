@@ -3,12 +3,20 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: var(--font_family) }
 
+*{
+    font-family: var(--font_family);
+}
+
 :root{
     --primary_color : #1d2d50;
     --color_1: #4cb79e;
     --color_2: #1E5F74;
     --color_3: #FCDAB7;
-    --font_family: 'Source Sans Pro', sans-serif;
+    --font_family: 'Urbanist', sans-serif;
+}
+
+h1,h2,h3,h4{
+    font-family: var(--font_family) !important;
 }
 
 .input_field{
@@ -46,7 +54,7 @@ body { margin: 0; font-family: var(--font_family) }
     height: 45px;
     width: fit-content;
     p{
-        margin: 0px 30px;
+        margin: 0px 30px !important;
         font-size: 16px;
     }
 }

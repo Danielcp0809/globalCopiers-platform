@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { enterprise } from 'src/app/core/models/enterprise.model';
@@ -7,13 +7,14 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { EnterpriseService } from 'src/app/core/services/enterprise/enterprise.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-enterprises-list',
   templateUrl: './enterprises-list.component.html',
   styleUrls: ['./enterprises-list.component.scss']
 })
-export class EnterprisesListComponent implements OnInit {
+export class EnterprisesListComponent implements OnInit, OnDestroy {
 
 
   enterprises: any[] = []
@@ -24,6 +25,8 @@ export class EnterprisesListComponent implements OnInit {
 
   isEditing = false;
   filterEnterprise = ''
+
+  subscription!: Subscription
 
   constructor(
     private authService: AuthService,
@@ -44,6 +47,10 @@ export class EnterprisesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEnterprises();
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
   }
 
   logOut(){
@@ -71,7 +78,7 @@ export class EnterprisesListComponent implements OnInit {
   }
 
   getEnterprises(){
-    this.enterpriseService.getEnterprises().subscribe(data=>{
+    this.subscription=this.enterpriseService.getEnterprises().subscribe(data=>{
       this.enterprises = data.map((enterprise: any)=>{
         return {
           id : enterprise.payload.doc.id,
@@ -178,5 +185,6 @@ export class EnterprisesListComponent implements OnInit {
   get sectorField(){
     return this.newEnterpriseForm.get('sector')
   }
+  
 
 }

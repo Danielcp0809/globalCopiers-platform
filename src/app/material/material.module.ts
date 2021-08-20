@@ -6,7 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -20,7 +22,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatButtonModule,
     MatRippleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule,
+    MatDividerModule
   ],
   exports:[
     FormsModule,
@@ -29,7 +33,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatButtonModule,
     MatRippleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }

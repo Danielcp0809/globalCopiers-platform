@@ -1,1 +1,103 @@
-<p>machines-list works!</p>
+<div class="container">
+    <div class="machines-list-container">
+        <div class="header">
+            <div class="search-field">
+                <div class="input_field">
+                    <input type="search" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="action-button">
+                <div mat-ripple class="button_primary" (click)="openMyModal('new-machine')">
+                    <p>Agregar equipo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal [modalID]="'new-machine'" [modalClass]="'md-effect-1'">
+    <div class="modal-header">
+        <h3>Agregar equipo</h3>
+        <button class="md-close" (click)="closeMyModal('new-machine')">CERRAR</button>
+    </div>
+    <div class="modal-content">
+        <div class="form-container">
+            <form [formGroup]="newMachineForm">
+                <div class="input_field">
+                    <label>NOMBRE</label>
+                    <input 
+                        [class.input_field_error]="brandField?.invalid && brandField?.touched" 
+                        [class.input_field_correct]="brandField?.valid && brandField?.touched" 
+                        formControlName="brand" 
+                        type="text" 
+                        placeholder="Ingrese el nombre de la empresa">
+                    <div class="input_errors" *ngIf="brandField?.touched">
+                        <p *ngIf="brandField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>CIUDAD</label>
+                    <input 
+                        [class.input_field_error]="modelField?.invalid && modelField?.touched" 
+                        [class.input_field_correct]="modelField?.valid && modelField?.touched" 
+                        formControlName="model" 
+                        type="text" 
+                        placeholder="Ingrese la cuidad">
+                    <div class="input_errors" *ngIf="modelField?.touched">
+                        <p *ngIf="modelField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>CIUDAD</label>
+                    <input 
+                        [class.input_field_error]="serialField?.invalid && serialField?.touched" 
+                        [class.input_field_correct]="serialField?.valid && serialField?.touched" 
+                        formControlName="serial" 
+                        type="text" 
+                        placeholder="Ingrese la cuidad">
+                    <div class="input_errors" *ngIf="serialField?.touched">
+                        <p *ngIf="serialField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>CIUDAD</label>
+                    <input 
+                        [class.input_field_error]="departmentField?.invalid && departmentField?.touched" 
+                        [class.input_field_correct]="departmentField?.valid && departmentField?.touched" 
+                        formControlName="department" 
+                        type="text" 
+                        placeholder="Ingrese la cuidad">
+                    <div class="input_errors" *ngIf="departmentField?.touched">
+                        <p *ngIf="departmentField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>CIUDAD</label>
+                    <input 
+                        [class.input_field_error]="typeField?.invalid && typeField?.touched" 
+                        [class.input_field_correct]="typeField?.valid && typeField?.touched" 
+                        formControlName="type" 
+                        type="text" 
+                        placeholder="Ingrese la cuidad">
+                    <div class="input_errors" *ngIf="typeField?.touched">
+                        <p *ngIf="typeField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>CIUDAD</label>
+                    <input 
+                        [class.input_field_error]="ipField?.invalid && ipField?.touched" 
+                        [class.input_field_correct]="ipField?.valid && ipField?.touched" 
+                        formControlName="ip" 
+                        type="text" 
+                        placeholder="Ingrese la cuidad">
+                    <div class="input_errors" *ngIf="ipField?.touched">
+                        <p *ngIf="ipField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+            </form>
+            <div mat-ripple class="button_primary md-close"><p>Agregar</p></div>
+            <!-- <div *ngIf="isEditing" mat-ripple class="button_primary md-close" (click)="editEnterprise($event)"><p>Actualizar</p></div> -->
+        </div>
+    </div>
+</app-modal>
