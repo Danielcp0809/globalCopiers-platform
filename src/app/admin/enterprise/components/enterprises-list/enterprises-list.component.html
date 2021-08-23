@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let row of enterprises | filter:filterEnterprise ; index as i ">
+                    <tr *ngFor="let row of enterprises | filter:keys:filterEnterprise ; index as i ">
                         <td data-label="Número" class="text-centered">{{i+1}}</td>
                         <td data-label="Nombre"
                             class="enterprise-name text-centered" 

@@ -3,13 +3,61 @@
         <div class="header">
             <div class="search-field">
                 <div class="input_field">
-                    <input type="search" placeholder="Buscar">
+                    <input type="search" placeholder="Buscar" [(ngModel)]="filterMachine">
                 </div>
             </div>
             <div class="action-button">
                 <div mat-ripple class="button_primary" (click)="openMyModal('new-machine')">
                     <p>Agregar equipo</p>
                 </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table *ngIf="machines.length!==0" class="table">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th *ngFor="let title of titles" >{{title| titlecase}}</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let machine of machines | filter:keys:filterMachine ; index as i ">
+                        <td data-label="Número" class="text-centered">{{i+1}}</td>
+                        <td data-label="Marca" class="text-centered">{{machine.brand}}</td>
+                        <td data-label="Modelo" class="text-centered">{{machine.model}}</td>
+                        <td data-label="N° Serie" class="text-centered">{{machine.serial}}</td>
+                        <td data-label="Departamento" class="text-centered">{{machine.department}}</td>
+                        <td data-label="Tipo" class="text-centered">{{machine.type}}</td>
+                        <td data-label="Direccion IP" class="text-centered">{{machine.ip}}</td>
+                        <td data-label="Estado" *ngIf="machine.isActive" class="text-centered">
+                            <!-- <label class="label label-success">Activo</label> -->
+                            <span
+                                (click)="editMachineState(machine.id, machine.isActive)"
+                                matTooltip="Activo" 
+                                matTooltipPosition='right' 
+                                class="material-icons active state">toggle_on
+                            </span>
+                        </td>
+                        <td data-label="Estado" *ngIf="!machine.isActive" class="text-centered">
+                            <!-- <label class="label label-default">Inactivo</label> -->
+                            <span
+                                (click)="editMachineState(machine.id, machine.isActive)"
+                                matTooltip="Inactivo"
+                                matTooltipPosition='right' 
+                                class="material-icons default state">toggle_off
+                            </span>
+                        </td>
+                        <td data-label="Acciones" class="text-centered">
+                            <!-- <span matTooltip="Activar" class="material-icons">visibility_off</span> -->                            
+                            <span matTooltip="Editar" class="material-icons" (click)="openModalEdit(machine)">edit</span>
+                            <span matTooltip="Eliminar" class="material-icons" (click)="deleteMachine(machine.id)">delete</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no-data" *ngIf="machines.length==0">
+                <h1>{{noDataMessage}}</h1>
             </div>
         </div>
     </div>
@@ -24,80 +72,83 @@
         <div class="form-container">
             <form [formGroup]="newMachineForm">
                 <div class="input_field">
-                    <label>NOMBRE</label>
+                    <label>MARCA</label>
                     <input 
                         [class.input_field_error]="brandField?.invalid && brandField?.touched" 
                         [class.input_field_correct]="brandField?.valid && brandField?.touched" 
                         formControlName="brand" 
                         type="text" 
-                        placeholder="Ingrese el nombre de la empresa">
+                        placeholder="Ingrese la marca">
                     <div class="input_errors" *ngIf="brandField?.touched">
                         <p *ngIf="brandField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
                 <div class="input_field">
-                    <label>CIUDAD</label>
+                    <label>MODELO</label>
                     <input 
                         [class.input_field_error]="modelField?.invalid && modelField?.touched" 
                         [class.input_field_correct]="modelField?.valid && modelField?.touched" 
                         formControlName="model" 
                         type="text" 
-                        placeholder="Ingrese la cuidad">
+                        placeholder="Ingrese el modelo">
                     <div class="input_errors" *ngIf="modelField?.touched">
                         <p *ngIf="modelField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
                 <div class="input_field">
-                    <label>CIUDAD</label>
+                    <label>NUMERO DE SERIE</label>
                     <input 
                         [class.input_field_error]="serialField?.invalid && serialField?.touched" 
                         [class.input_field_correct]="serialField?.valid && serialField?.touched" 
                         formControlName="serial" 
                         type="text" 
-                        placeholder="Ingrese la cuidad">
+                        placeholder="Ingrese el numero de serie">
                     <div class="input_errors" *ngIf="serialField?.touched">
                         <p *ngIf="serialField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
                 <div class="input_field">
-                    <label>CIUDAD</label>
+                    <label>DEPARTAMENTO</label>
                     <input 
                         [class.input_field_error]="departmentField?.invalid && departmentField?.touched" 
                         [class.input_field_correct]="departmentField?.valid && departmentField?.touched" 
                         formControlName="department" 
                         type="text" 
-                        placeholder="Ingrese la cuidad">
+                        placeholder="Ingrese el departamento">
                     <div class="input_errors" *ngIf="departmentField?.touched">
                         <p *ngIf="departmentField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
-                <div class="input_field">
-                    <label>CIUDAD</label>
-                    <input 
+                <div class="select-field">
+                    <label>MARCA</label>
+                    <select 
+                        name="cars" 
+                        id="cars"
                         [class.input_field_error]="typeField?.invalid && typeField?.touched" 
                         [class.input_field_correct]="typeField?.valid && typeField?.touched" 
-                        formControlName="type" 
-                        type="text" 
-                        placeholder="Ingrese la cuidad">
+                        formControlName="type">
+                        <option value="B/N">B/N</option>
+                        <option value="Color">Color</option>
+                    </select>
                     <div class="input_errors" *ngIf="typeField?.touched">
                         <p *ngIf="typeField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
                 <div class="input_field">
-                    <label>CIUDAD</label>
+                    <label>DIRECCIÓN IP</label>
                     <input 
                         [class.input_field_error]="ipField?.invalid && ipField?.touched" 
                         [class.input_field_correct]="ipField?.valid && ipField?.touched" 
                         formControlName="ip" 
                         type="text" 
-                        placeholder="Ingrese la cuidad">
+                        placeholder="Ingrese la dirección IP">
                     <div class="input_errors" *ngIf="ipField?.touched">
                         <p *ngIf="ipField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
             </form>
-            <div mat-ripple class="button_primary md-close"><p>Agregar</p></div>
-            <!-- <div *ngIf="isEditing" mat-ripple class="button_primary md-close" (click)="editEnterprise($event)"><p>Actualizar</p></div> -->
+            <div *ngIf="!isEditing" mat-ripple class="button_primary md-close" (click)="addNewMachine($event)"><p>Agregar</p></div>
+            <div *ngIf="isEditing" mat-ripple class="button_primary md-close" (click)="editMachine($event)"><p>Actualizar</p></div>
         </div>
     </div>
 </app-modal>

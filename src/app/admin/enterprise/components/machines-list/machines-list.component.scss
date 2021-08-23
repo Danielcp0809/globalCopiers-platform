@@ -1,5 +1,5 @@
 .header{
-    padding: 10px 0px;
+    padding-bottom:10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -9,6 +9,10 @@
 .search-field{
     max-width: 400px;
     min-width: 300px
+}
+
+.table-container{
+    padding: 5px 0px;
 }
 
 .input_errors{
@@ -23,23 +27,35 @@
     border: 1px solid red !important;
 }
 
-.input_field{
+.input_field, .select-field{
     width: 250px;
 }
 
-.input_field label{
+.input_field label, .select-field label{
     font-size: 12px;
     font-weight: 500;
     color:var(--primary_color)
 }
 
-.input_field input{
+.input_field input, .select-field select {
     border: solid 1px rgb(214, 214, 214);
 }
 
-.input_field input:focus{
+.input_field input:focus, .search-field select:focus{
     border: 2px solid var(--color_1);
     height: 44px;
+}
+
+.active{
+    color: var(--color_1)
+}
+
+.default{
+    color: gray
+}
+
+.state{
+    font-size: 45px;
 }
 
 .modal-content{
@@ -61,4 +77,31 @@
 
 .button_primary{
     margin:0px auto;
+}
+
+
+@media (max-width:600px) {
+    .header{
+        flex-direction: column;
+    }
+    .search-field{
+        width: 100%;
+        .input_field{
+            width: 100%;
+            margin: 10px 0px;
+        }
+    }
+    .modal-content{
+        width: 100%;
+    }
+    .form-container{
+        min-width: 100%;
+    }
+    .form-container .input_field{
+        margin: 5px 0px;
+        width: 100%;
+    }
+    .table-container{
+        padding: 5px 5px;
+    }
 }

@@ -20,7 +20,7 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
   enterprises: any[] = []
   noDataMessage = "No hay empresas"
   titles = ['Nombre', 'Ubicación', 'Estado', 'Equipos']
-
+  keys = ['name','city','sector']
   newEnterpriseForm!: FormGroup;
 
   isEditing = false;

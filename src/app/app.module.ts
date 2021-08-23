@@ -15,6 +15,7 @@ import { AuthService } from './core/services/auth/auth.service';
 import { AppService } from './core/services/app/app.service';
 import { EnterpriseService } from './core/services/enterprise/enterprise.service';
 import { ToastrModule } from 'ngx-toastr';
+import { MachineService } from './core/services/machine/machine.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ToastrModule } from 'ngx-toastr';
   providers: [
     EnterpriseService,
     AuthService,
-    AppService
+    AppService,
+    MachineService
   ],
   bootstrap: [AppComponent]
 })

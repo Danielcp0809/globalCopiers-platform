@@ -6,11 +6,16 @@ import { enterprise } from 'src/app/core/models/enterprise.model';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(items: any, arg: any): any {
+  transform(items: any, keys: any[], word: any,): any {
     const result = [];
-    for(const item of items){
-      if(item.name.toLowerCase().indexOf(arg.toLowerCase()) > -1){
-        result.push(item)
+
+    for(const key of keys){
+      for(const item of items){
+        if(item[key].toLowerCase().indexOf(word.toLowerCase()) > -1){
+          if(result.indexOf(item) === -1){
+            result.push(item)
+          }
+        }
       }
     }
     return result
