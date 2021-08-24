@@ -12,13 +12,13 @@ import { EnterpriseService } from 'src/app/core/services/enterprise/enterprise.s
 })
 export class EnterpriseDetailComponent implements OnInit, OnDestroy {
 
-  enterprise= {
+  enterprise : enterprise = {
     id:'',
     name : '',
     city : '',
     sector : '',
-    isActive : '',
-    machines: '',
+    isActive : false,
+    machines: 0,
   }
   id: string | null
   sub: Subscription

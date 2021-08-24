@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { enterprise } from 'src/app/core/models/enterprise.model';
 import { machine } from 'src/app/core/models/machine.model';
+import { EnterpriseService } from 'src/app/core/services/enterprise/enterprise.service';
 import { MachineService } from 'src/app/core/services/machine/machine.service';
 import Swal from 'sweetalert2'
 
@@ -14,6 +16,9 @@ import Swal from 'sweetalert2'
   styleUrls: ['./machines-list.component.scss']
 })
 export class MachinesListComponent implements OnInit, OnDestroy {
+
+  @Input() onwerInformation!:enterprise
+
 
   newMachineForm!: FormGroup
   machines: any[] = []
@@ -29,6 +34,7 @@ export class MachinesListComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private machineService: MachineService,
+    private enterpriseService: EnterpriseService,
     private toastr: ToastrService,
     private route: ActivatedRoute
   ) {
@@ -102,6 +108,7 @@ export class MachinesListComponent implements OnInit, OnDestroy {
       if (result.isConfirmed) {
         this.machineService.deleteMachine(id).then(()=>{
           this.toastr.success('Equipo eliminado con éxito');
+          this.enterpriseService.decreaseMachines(this.enterpriseId || '', this.onwerInformation.machines)
         }).catch(()=>{
           this.toastr.error('Error al eliminar el equipo','Error');
         })
@@ -113,12 +120,14 @@ export class MachinesListComponent implements OnInit, OnDestroy {
     event.preventDefault()
     if(this.newMachineForm.valid){
       const values = this.newMachineForm.value;
+      delete values['id']
       values.ownerId = this.enterpriseId;
       values.isActive = true;
       this.closeMyModal('new-machine');
       this.machineService.addMachine(values)
         .then(()=>{
           this.toastr.success('Equipo agregado con éxito');
+          this.enterpriseService.increaseMachines(this.enterpriseId || '', this.onwerInformation.machines)
         })
         .catch(()=>{
           this.toastr.error('Error al agregar el equipo','Error');
