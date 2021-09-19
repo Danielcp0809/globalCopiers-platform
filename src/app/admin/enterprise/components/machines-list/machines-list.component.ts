@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { enterprise } from 'src/app/core/models/enterprise.model';
 import { machine } from 'src/app/core/models/machine.model';
+import { AdminService } from 'src/app/core/services/admin/admin.service';
 import { EnterpriseService } from 'src/app/core/services/enterprise/enterprise.service';
 import { MachineService } from 'src/app/core/services/machine/machine.service';
+import { MyValidators } from 'src/app/utils/validators/validators';
 import Swal from 'sweetalert2'
 
 
@@ -36,7 +38,8 @@ export class MachinesListComponent implements OnInit, OnDestroy {
     private machineService: MachineService,
     private enterpriseService: EnterpriseService,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private adminService: AdminService
   ) {
     this.buildNewMachineForm();
   }
@@ -66,6 +69,7 @@ export class MachinesListComponent implements OnInit, OnDestroy {
       const values = this.newMachineForm.value
       this.machineService.updateMachine(values.id,values).then(()=>{
         this.toastr.success('Equipo actualizado con éxito');
+        this.closeMyModal('new-machine');
       })
       .catch(()=>{
         this.toastr.error('Error al actualizar el equipo','Error');
@@ -109,6 +113,7 @@ export class MachinesListComponent implements OnInit, OnDestroy {
         this.machineService.deleteMachine(id).then(()=>{
           this.toastr.success('Equipo eliminado con éxito');
           this.enterpriseService.decreaseMachines(this.enterpriseId || '', this.onwerInformation.machines)
+          this.adminService.decreaseAdminMachines()
         }).catch(()=>{
           this.toastr.error('Error al eliminar el equipo','Error');
         })
@@ -121,13 +126,14 @@ export class MachinesListComponent implements OnInit, OnDestroy {
     if(this.newMachineForm.valid){
       const values = this.newMachineForm.value;
       delete values['id']
-      values.ownerId = this.enterpriseId;
+      values.enterpriseId = this.enterpriseId;
       values.isActive = true;
       this.closeMyModal('new-machine');
       this.machineService.addMachine(values)
         .then(()=>{
           this.toastr.success('Equipo agregado con éxito');
           this.enterpriseService.increaseMachines(this.enterpriseId || '', this.onwerInformation.machines)
+          this.adminService.increaseAdminMachines()
         })
         .catch(()=>{
           this.toastr.error('Error al agregar el equipo','Error');
@@ -142,9 +148,9 @@ export class MachinesListComponent implements OnInit, OnDestroy {
       model:['',[Validators.required]],
       serial:['',[Validators.required]],
       department:['', [Validators.required]],
-      type: ['', [Validators.required]],
-      ip: ['', [Validators.required]],
-      ownerId: '',
+      type: ['B/N', [Validators.required]],
+      ip: ['', [Validators.required, MyValidators.ipAddress]],
+      enterpriseId: '',
       id:'',
       isActive: true
     })

@@ -19,6 +19,16 @@ export class MyValidators {
       return {match_password:true}
     }
   }
+
+  static ipAddress(control: AbstractControl){
+    const ip = control.value
+    if(ip !== null){
+      if(!isIpAddress(ip)){
+        return {noIpAddress: true}
+      }
+    }
+    return null
+  }
 }
 
 function constainsNumber(value: string){
@@ -39,4 +49,8 @@ function constainsSpecialCharacter(value: string){
 
 function constainsWhiteSpace(value: string){
   return value.match(/\s/g) !== null
+}
+
+function isIpAddress(value:string = ''){
+  return value.match(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/) !== null
 }

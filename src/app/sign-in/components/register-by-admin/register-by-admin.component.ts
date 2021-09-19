@@ -52,7 +52,10 @@ export class RegisterByAdminComponent implements OnInit {
             uid: user?.uid,
             email: user?.email,
             displayName: this.registerForm.value.name,
-            userType: 'admin'
+            userType: 'admin',
+            usersCount: 0,
+            machinesCount: 0,
+            enterprisesCount: 0
           }
           console.log(newUser)
           this.authService.setUserData(newUser)

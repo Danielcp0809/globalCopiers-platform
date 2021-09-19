@@ -35,6 +35,7 @@ export class SignInComponent implements OnInit {
             (res: any)=>{
               if(res){
                 localStorage.setItem('user',JSON.stringify(res));
+                this.authService.userData = res;
                 this.router.navigate([`${res.userType}`])
               }
             })

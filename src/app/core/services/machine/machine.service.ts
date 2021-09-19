@@ -17,8 +17,8 @@ export class MachineService {
     return this.firestore.collection('machines').add(machine);
   }
 
-  getMachines(ownerId: string): Observable<any>{
-    return this.firestore.collection('machines', data => data.where('ownerId','==',ownerId)).snapshotChanges()
+  getMachines(enterpriseId: string): Observable<any>{
+    return this.firestore.collection('machines', data => data.where('enterpriseId','==',enterpriseId)).snapshotChanges()
   }
 
   deleteMachine(id: string){

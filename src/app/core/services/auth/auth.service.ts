@@ -11,7 +11,7 @@ export class AuthService {
 userData: any
   constructor(
     private angularFireAuth: AngularFireAuth,
-    private angularFireStorage: AngularFirestore
+    private angularFireStorage: AngularFirestore,
   ) {
     if(localStorage.getItem('user')){
       this.userData = JSON.parse(localStorage.getItem('user') || '')
@@ -20,6 +20,10 @@ userData: any
 
   createUser(email: string, password: string){
     return this.angularFireAuth.createUserWithEmailAndPassword(email, password)
+  }
+
+  deleteUser(){
+    return 
   }
 
   setUserData(user: User){

@@ -1,6 +1,6 @@
 export interface machine{
     id?: string
-    ownerId: string
+    enterpriseId: string
     isActive: boolean
     brand: string
     model: string

@@ -25,7 +25,7 @@ export class EnterpriseService {
   }
 
   deleteEnterprise(id: string){
-    this.firestore.collection('machines').ref.where('ownerId','==',id).get().then((machines)=>{
+    this.firestore.collection('machines').ref.where('enterpriseId','==',id).get().then((machines)=>{
         machines.docs.forEach(machine => {
         this.machineService.deleteMachine(machine.id)
       });

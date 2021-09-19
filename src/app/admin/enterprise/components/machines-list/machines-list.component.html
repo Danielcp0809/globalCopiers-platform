@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="select-field">
-                    <label>MARCA</label>
+                    <label>TIPO</label>
                     <select 
                         name="cars" 
                         id="cars"
@@ -144,6 +144,7 @@
                         placeholder="Ingrese la dirección IP">
                     <div class="input_errors" *ngIf="ipField?.touched">
                         <p *ngIf="ipField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                        <p *ngIf="ipField?.hasError('noIpAddress')"><strong>La IP ingresada esta incorrecta</strong></p>
                     </div>
                 </div>
             </form>

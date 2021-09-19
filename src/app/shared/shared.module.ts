@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TableComponent } from './components/table/table.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { FilterPipe } from './pipes/filter/filter.pipe';
+import { PasswordPipe } from './pipes/password/password.pipe';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
     HeaderComponent,
     TableComponent,
     ModalComponent,
-    FilterPipe
+    FilterPipe,
+    PasswordPipe,
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
     HeaderComponent,
     TableComponent,
     ModalComponent,
-    FilterPipe
+    FilterPipe,
+    PasswordPipe
   ]
 })
 export class SharedModule {}

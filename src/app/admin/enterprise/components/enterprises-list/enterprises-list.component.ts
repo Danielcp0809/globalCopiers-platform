@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { enterprise } from 'src/app/core/models/enterprise.model';
 import { AppService } from 'src/app/core/services/app/app.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -8,6 +7,7 @@ import { EnterpriseService } from 'src/app/core/services/enterprise/enterprise.s
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2'
 import { Subscription } from 'rxjs';
+import { AdminService } from 'src/app/core/services/admin/admin.service';
 
 @Component({
   selector: 'app-enterprises-list',
@@ -30,17 +30,17 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     public appService: AppService,
     public formBuilder: FormBuilder,
     private enterpriseService: EnterpriseService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private adminService: AdminService
   ) { 
     console.log(this.authService.userData)
     this.buildNewEnterpriseForm();
     this.appService.routes = [{
       name:'Empresas',
-      url:'/enterprice'
+      url:'enterprises'
     }]
   }
 
@@ -51,11 +51,6 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.subscription.unsubscribe()
-  }
-
-  logOut(){
-    this.authService.logout()
-    this.router.navigate(['sign-in'])
   }
 
   openMyModal(event: any) {
@@ -104,6 +99,7 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
       if (result.isConfirmed) {
         this.enterpriseService.deleteEnterprise(id).then(()=>{
           this.toastr.success('Empresa eliminada con éxito');
+          this.adminService.decreaseAdminEnterprises()
         }).catch(()=>{
           this.toastr.error('Error al eliminar la empresa','Error');
         })
@@ -168,6 +164,7 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
       this.enterpriseService.addEnterprise(enterprise)
         .then(() => {
         this.toastr.success('Empresa agregada con éxito');
+        this.adminService.increaseAdminEnterprises()
       }).catch(()=>{
         this.toastr.error('Error al agregar la empresa','Error');
       })

@@ -1,1 +1,118 @@
-<p>users-list works!</p>
+<div class="container">
+    <div class="users-list-container">
+        <div class="header">
+            <div class="search-field">
+                <div class="input_field">
+                    <input type="search" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="action-button">
+                <div mat-ripple class="button_primary" (click)="openMyModal('new-user')">
+                    <p>Agregar usuario</p>
+                </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th *ngFor="let title of titles" >{{title| titlecase}}</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of users; index as i">
+                        <td data-label="Número" class="text-centered">{{i+1}}</td>
+                        <td data-label="Nombre"
+                            class="enterprise-name text-centered" 
+                            matTooltip="Ver empresa" 
+                            routerLink="{{row.id}}">{{row.displayName}}
+                         </td>
+                        <td data-label="Usuario" class="text-centered">{{row.userName}}</td>
+                        <td data-label="Contraseña" class="text-centered password-label">
+                            <label>{{row.pass | password : row.hidePass}} </label>
+                            <span *ngIf="row.hidePass" class="material-icons" matTooltip="Ver contraseña" (click)="toggleHidePass(i)">visibility</span>
+                            <span *ngIf="!row.hidePass" class="material-icons" matTooltip="Ocultar contraseña" (click)="toggleHidePass(i)">visibility_off</span>
+                        </td>
+                        <td data-label="Estado" *ngIf="row.isActive" class="text-centered">
+                            <!-- <label class="label label-success">Activo</label> -->
+                            <span
+                                (click)="editUserState(row.id, row.isActive)"
+                                matTooltip="Activo" 
+                                matTooltipPosition='right' 
+                                class="material-icons active state">toggle_on
+                            </span>
+                        </td>
+                        <td data-label="Estado" *ngIf="!row.isActive" class="text-centered">
+                            <!-- <label class="label label-default">Inactivo</label> -->
+                            <span
+                                (click)="editUserState(row.id, row.isActive)"
+                                matTooltip="Inactivo"
+                                matTooltipPosition='right' 
+                                class="material-icons default state">toggle_off
+                            </span>
+                        </td>
+                        <td data-label="Acciones" class="text-centered">
+                            <!-- <span matTooltip="Activar" class="material-icons">visibility_off</span> -->                            
+                            <span matTooltip="Editar" class="material-icons" (click)="openModalEdit(row)">edit</span>
+                            <span matTooltip="Eliminar" class="material-icons" (click)="deleteUser(row.id)">delete</span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-modal [modalID]="'new-user'" [modalClass]="'md-effect-1'">
+    <div class="modal-header">
+        <h3>Agregar usuario</h3>
+        <button class="md-close" (click)="closeMyModal('new-user')">CERRAR</button>
+    </div>
+    <div class="modal-content">
+        <div class="form-container">
+           <form [formGroup]="newUserForm">
+                <div class="input_field">
+                    <label>NOMBRE</label>
+                    <input 
+                        [class.input_field_error]="nameField?.invalid && nameField?.touched" 
+                        [class.input_field_correct]="nameField?.valid && nameField?.touched" 
+                        formControlName="name" 
+                        type="text" 
+                        placeholder="Ingrese el nombre del usuario">
+                    <div class="input_errors" *ngIf="nameField?.touched">
+                        <p *ngIf="nameField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>USUARIO</label>
+                    <input 
+                        [class.input_field_error]="userNameField?.invalid && userNameField?.touched" 
+                        [class.input_field_correct]="userNameField?.valid && userNameField?.touched" 
+                        formControlName="userName" 
+                        type="text" 
+                        placeholder="Ingrese el usuario">
+                    <div class="input_errors" *ngIf="userNameField?.touched">
+                        <p *ngIf="userNameField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>CONTRASEÑA</label>
+                    <input 
+                        [class.input_field_error]="passwordField?.invalid && passwordField?.touched" 
+                        [class.input_field_correct]="passwordField?.valid && passwordField?.touched" 
+                        formControlName="password" 
+                        type="text"
+                        placeholder="Ingrese una contraseña">
+                    <div class="input_errors" *ngIf="passwordField?.touched">
+                        <p *ngIf="passwordField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+           </form>
+           <div *ngIf="!isEditing" mat-ripple class="button_primary md-close"(click)="addNewUser($event)"><p>Agregar</p></div>
+           <div *ngIf="isEditing" mat-ripple class="button_primary md-close" (click)="editUser($event)"><p>Actualizar</p></div>
+        </div>
+    </div>
+</app-modal>

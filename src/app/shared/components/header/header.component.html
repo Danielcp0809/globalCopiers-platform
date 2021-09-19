@@ -4,7 +4,7 @@
             <ul>
                 <li *ngFor='let route of this.appService.routes;
                 let $index = index; let $last = last'>
-                    <a [ngClass]="{'active': $last}">{{route.name}}</a>
+                    <a [ngClass]="{'active': $last}" (click)="goTo(route.url)">{{route.name}}</a>
                     <span *ngIf="!$last" class="material-icons">chevron_right</span>
                 </li>
             </ul>
