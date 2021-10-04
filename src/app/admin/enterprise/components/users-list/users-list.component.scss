@@ -1,0 +1,131 @@
+.header{
+    padding-bottom:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-field{
+    max-width: 400px;
+    min-width: 300px
+}
+
+.search-field input{
+    border: solid 1px rgb(214, 214, 214);
+}
+
+.search-field input:focus{
+    border: 2px solid var(--color_1);
+    height: 44px;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    min-width: 100%;
+}
+
+.form-container{
+    min-width: 400px;
+}
+
+.input_errors{
+    p{
+        margin: 0px;
+        color: red;
+        font-weight: 400;
+    }
+}
+
+.input_field_error{
+    border: 1px solid red !important;
+}
+
+
+.input_field label, .select-field label{
+    font-size: 12px;
+    font-weight: 500;
+    color:var(--primary_color)
+}
+
+.input_field input, .select-field select {
+    border: solid 1px rgb(214, 214, 214);
+}
+
+.input_field input:focus, .select-field select:focus{
+    border: 2px solid var(--color_1);
+    height: 44px;
+}
+.button_primary{
+    margin:0px auto;
+}
+
+.table-container{
+    padding: 10px 0px;
+}
+
+.active{
+    color: var(--color_1)
+}
+
+.default{
+    color: gray
+}
+
+.state{
+    font-size: 45px;
+}
+
+.password-label{
+    position: relative;
+    span{
+        position: absolute;
+        top: 12px;
+        right: 10%;
+        visibility: hidden;
+    }
+}
+.password-label:hover span{
+    visibility: visible;
+}
+
+
+
+
+@media (max-width:600px) {
+    .header{
+        flex-direction: column;
+    }
+    .search-field{
+        width: 100%;
+        .input_field{
+            width: 100%;
+            margin: 10px 0px;
+        }
+    }
+    .modal-content{
+        width: 100%;
+    }
+    .form-container{
+        min-width: 100%;
+    }
+    .form-container .input_field, .select-field{
+        margin: 5px 0px;
+        width: 100%;
+    }
+    .table-container{
+        padding: 5px 5px;
+    }
+    .password-label{
+        display: flex;
+        justify-content: end;
+    }
+    .password-label span{
+        position: relative;
+        visibility: visible;
+        right: 0px;
+        top: 0px
+    }
+}   

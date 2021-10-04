@@ -1,0 +1,138 @@
+.container{
+    width: 100%;
+    min-height: 100vh;
+}
+
+.layout-container{
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.header-responsive{
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    max-width: 100%;
+    min-height: 50px;
+    background-color: var(--primary_color);
+    span{
+        color: white;
+        cursor: pointer;
+        font-size: 30px;
+    }
+    img{
+        height: 40px;
+        margin-right: 15px;
+    }
+}
+
+.menu{
+    min-width: 18%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary_color);
+    color: white
+}
+
+.header-menu{
+    padding: 30px 20px;
+}
+
+.header-menu h3{
+    margin: 0px;
+    font-size: 20px;
+}
+.header-menu h2{
+    font-size: 27px;
+}
+
+.menu-options ul{
+    padding: 0px;
+}
+
+.menu-options .option{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    min-height: 60px;
+    .option-label{
+        margin-left: 20px;
+        min-width: 100px;
+        h3{
+            margin: 0px;
+            font-size: 18px;
+        }
+    }
+    span{
+        font-size: 40px;
+    }
+}
+
+.active > span::before{
+    content:'';
+    width: 10px;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    background-color: var(--color_1);
+    top: -1px;
+}
+
+.menu-options .option::before{
+    content:'';
+    width: 10px;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    background-color: var(--color_1);
+    visibility: hidden;
+}
+
+.menu-options .option:hover::before{
+    visibility: visible;
+}
+
+
+.option.active, .option:hover{
+    background-color: #49546e;
+}
+
+.content{
+    width: 82%;
+}
+
+@media(max-width:900px){
+    .layout-container{
+        padding-top: 50px;
+        overflow: hidden;
+        position: relative;
+        min-height: 94vh;
+    }
+    .header-responsive{
+        display: flex;
+        position: fixed;
+        z-index: 9;
+        width: 100%;
+    }
+    .menu{
+        position: fixed;
+        top:50px;
+        z-index: 10;
+        max-width: 300px;
+        transform: translateX(-300px);
+        transition: all 0.5s ease-in-out;
+    }
+    .content{
+        width: 100% ;
+    }
+    .nav-show{
+        transform: translateX(0px);
+    }
+}

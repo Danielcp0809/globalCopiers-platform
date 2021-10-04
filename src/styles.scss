@@ -1,1 +1,226 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: var(--font_family) }
+
+*{
+    font-family: var(--font_family);
+}
+
+:root{
+    --primary_color : #1d2d50;
+    --color_1: #4cb79e;
+    --color_2: #1E5F74;
+    --color_3: #FCDAB7;
+    --font_family: 'Urbanist', sans-serif;
+}
+
+h1,h2,h3,h4{
+    font-family: var(--font_family) !important;
+}
+
+.input_field{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 20px 0px;
+    label{
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+    input{
+        height: 45px;
+        outline: none;
+        border-radius: 10px;
+        border: 0;
+        padding: 0px 15px;
+        font-size: 15px;
+    }
+    input:focus{
+        border: 2px solid var(--color_1);
+        height: 41px;
+    }
+}
+
+.select-field{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 20px 0px;
+    label{
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+    select{
+        height: 45px;
+        outline: none;
+        border-radius: 10px;
+        border: 0;
+        padding: 0px 15px;
+        font-size: 15px;
+    }
+    select:focus{
+        border: 2px solid var(--color_1);
+        height: 41px;
+    }
+}
+
+.button_primary{
+    cursor: pointer;
+    background-color: var(--color_1);
+    color: white;
+    border-radius: 15px;
+    border:2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: fit-content;
+    p{
+        margin: 0px 30px !important;
+        font-size: 16px;
+    }
+}
+
+.input_errors{
+    p{
+        margin: 0px;
+        color: var(--color_3)
+    }
+}
+
+.input_field_error{
+    border: 2px solid red;
+}
+
+.botton_disabled{
+    background-color: gray;
+    border-color: rgb(71, 71, 71);;
+    p{
+        color: rgb(71, 71, 71);
+    }
+}
+///////// SPINER //////////////
+.loading_spinner{
+    border: 10px solid #ccc;
+    border-top-color: var(--color_1);
+    border-top-style: groove;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    from{ transform: rotate(0deg);}
+    to{ transform: rotate(360deg);}
+}
+
+////////// TABLE STYLES //////////
+.table-container{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .no-data{
+        h1{
+            font-size: 20px;
+            color: rgba(82, 82, 82, 0.938);;
+        }
+    }
+}
+
+ .table{
+    width: 100%;
+    border-spacing: 0;
+    td, th{
+        max-width: 300px;
+        height: 50px;
+        border-top: solid 1px gray;
+        border-spacing: 0px;
+        span{
+            margin: 0px 5px;
+            color: rgba(82, 82, 82, 0.938);
+            cursor: pointer;
+        }
+    }
+    tr:last-child{
+        td{
+            border-bottom: solid 1px gray;
+        }
+    }
+
+}
+
+.text-centered{
+    text-align: center;
+    align-items: center;
+}
+
+.label{
+    border-radius: 4px;
+    font-size: 75%;
+    padding: 4px 7px;
+    margin-right: 5px;
+    font-weight: 400;
+    color: #fff!important;
+}
+
+.label-success{
+    background-color: var(--color_1);
+}
+
+.label-default{
+    background-color: gray;
+}
+
+
+@media (max-width:600px){
+
+    .table, .table tbody, .table tr, .table td{
+        display: block;
+        width: 100%;
+    }
+
+    .table{
+        thead{
+            display: none;
+        }
+        td{
+            border: none;
+            height: fit-content;
+            padding: 0px;
+            text-align: right;
+            position: relative;
+            max-width: 100%;
+            min-height: 30px;
+        }
+        tr{
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 95%;
+            border-radius: 20px;
+            box-shadow: 0px 0px 5px 1px rgb(199, 199, 199);
+        }
+        td::before{
+            content: attr(data-label);
+            position: absolute;
+            left: 0px;
+            width: 50%;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+        td:nth-child(even){
+            background-color: rgb(245, 245, 245);
+        }
+        tr:last-child{
+            td{
+                border-bottom: none;
+            }
+        }
+    }
+
+
+}
+

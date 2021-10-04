@@ -1,0 +1,24 @@
+[debug] [2021-08-07T05:11:23.841Z] ----------------------------------------------------------------------
+[debug] [2021-08-07T05:11:23.851Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Daniel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-08-07T05:11:23.853Z] CLI Version:   9.16.0
+[debug] [2021-08-07T05:11:23.854Z] Platform:      win32
+[debug] [2021-08-07T05:11:23.854Z] Node Version:  v14.17.1
+[debug] [2021-08-07T05:11:23.862Z] Time:          Sat Aug 07 2021 00:11:23 GMT-0500 (hora de Ecuador)
+[debug] [2021-08-07T05:11:23.862Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-07T05:11:23.877Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-08-07T05:11:23.977Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-07T05:11:23.978Z] > authorizing via signed-in user (cordova.daniel22@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Daniel\Documents\PROYECTOS\Paginas - Frank\Plataforma de gestion de equipos\globalCopiers-platform
+
+[debug] [2021-08-07T05:11:26.650Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-08-07T05:11:26.651Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}

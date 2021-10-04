@@ -1,1 +1,30 @@
-<p>enterprise-detail works!</p>
+<div class="container">
+    <div class="enterprise-detail-container">
+        <div class="details">
+            <div class="details-field">
+                <label>{{'nombre de la empresa' | uppercase}}</label>
+                <h2>{{enterprise.name}}</h2>
+            </div>
+            <div class="details-field">
+                <label>{{'Ciudad' | uppercase}}</label>
+                <h2>{{enterprise.city}}</h2>
+            </div>
+            <div class="details-field">
+                <label>{{'Sector' | uppercase}}</label>
+                <h2>{{enterprise.sector}}</h2>
+            </div>
+            <div class="details-field">
+                <label>{{'Cantidad de equipos' | uppercase}}</label>
+                <h2>{{enterprise.machines}}</h2>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="enterprise-tabs">
+            <mat-tab-group color="accent" mat-align-tabs="start">
+                <mat-tab label="Equipos"><app-machines-list [onwerInformation]="enterprise"></app-machines-list></mat-tab>
+                <mat-tab label="Usuarios"><app-users-list></app-users-list></mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

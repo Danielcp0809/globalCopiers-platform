@@ -1,0 +1,45 @@
+<div class="register-form">
+    <div class="register-form-content">
+        <h1>Nuevo usuario administrador</h1>
+        <form [formGroup]="registerForm" action="">
+            <div class="input_field">
+                <label>Nombre:</label>
+                <input [class.input_field_error]="nameField?.invalid && nameField?.touched" formControlName="name" id="name" type="text" placeholder="Ingrese el nombre del usuario">
+                <div class="input_errors" *ngIf="nameField?.touched">
+                    <p *ngIf="nameField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                </div>
+            </div>
+            <div class="input_field">
+                <label>Correo:</label>
+                <input [class.input_field_error]="emailField?.invalid && emailField?.touched" formControlName="email" type="text" placeholder="Ingrese un correo">
+                <div class="input_errors" *ngIf="emailField?.touched">
+                    <p *ngIf="emailField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                </div>
+            </div>
+            <div class="input_field">
+                <label>Contraseña:</label>
+                <input [class.input_field_error]="(passwordField?.invalid && passwordField?.touched) || (this.registerForm.hasError('match_password')&&confirmPassField?.touched )" formControlName="password" type="password" placeholder="Ingrese una contraseña">
+                <div class="input_errors" *ngIf="passwordField?.touched">
+                    <p *ngIf="passwordField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    <p *ngIf="passwordField?.hasError('noNumber')"><strong>La contraseña debe tener al menos un número</strong></p>
+                    <p *ngIf="passwordField?.hasError('noSpecial')"><strong>La contraseña debe tener al menos un caracter especial</strong></p>
+                    <p *ngIf="passwordField?.hasError('noMayus')"><strong>La contraseña debe tener al menos un letra mayúscula</strong></p>
+                    <p *ngIf="passwordField?.hasError('noMinus')"><strong>La contraseña debe tener al menos un letra minúscula</strong></p>
+                    <p *ngIf="passwordField?.hasError('whiteSpaces')"><strong>La contraseña no debe tener espacios en blanco</strong></p>
+                </div>
+            </div>
+            <div class="input_field">
+                <label>Confirmar contraseña:</label>
+                <input [class.input_field_error]="this.registerForm.hasError('match_password') && confirmPassField?.touched" formControlName="confirmPassword" type="password" placeholder="Ingrese nuevamente la contraseña">
+                <div class="input_errors" *ngIf="confirmPassField?.touched">
+                    <p *ngIf="confirmPassField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    <p *ngIf="this.registerForm.hasError('match_password') && confirmPassField?.touched"><strong>Las contraseñas no coinciden</strong></p>
+                </div>
+            </div>
+        </form>
+        <div class="button_content">
+            <div *ngIf="isLoading" class="loading_spinner"></div>
+            <div *ngIf="!isLoading" [class.botton_disabled]="this.registerForm.invalid" class="button_primary" (click)="submitRegisterForm($event)"><p>Iniciar Sesión</p></div>
+        </div>
+    </div>
+</div>
