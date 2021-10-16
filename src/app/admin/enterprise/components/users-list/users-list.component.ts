@@ -97,7 +97,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
         isActive: true,
         enterpriseId: this.enterpriseId
       }
-      this.userService.updateUser(values.id, values).then(()=>{
+      this.userService.updateUser(values.id, actualUser).then(()=>{
         this.toastr.success('Usuario actualizado con éxito');
         this.closeMyModal('new-user');
       }).catch(()=>{
