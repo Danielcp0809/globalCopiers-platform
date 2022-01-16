@@ -18,15 +18,16 @@ import Swal from 'sweetalert2'
 export class UsersListComponent implements OnInit, OnDestroy {
 
   @Input() onwerInformation!:enterprise
+  @Input() departmentOptions: string[] = []
 
   isEditing: boolean = false;
-  titles = ['nombre','usuario','contraseña','estado']
+  titles = ['nombre','usuario','contraseña','departamento','estado']
   newUserForm!: FormGroup;
   users: any[] = [];
   noDataMessage: string = 'No hay usuarios';
   filterUser = '';
   suscription!: Subscription
-  enterpriseId: string | null = ''
+  enterpriseId: string | null = '';
 
   
 
@@ -35,19 +36,32 @@ export class UsersListComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private route: ActivatedRoute,
     private authServices: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) { 
     this.enterpriseId = this.route.snapshot.paramMap.get('id');
     this.buildForm()
-
+    
   }
-
+  
   ngOnInit(): void {
     this.getAllUsers()
   }
-
+  
   ngOnDestroy(){
-
+    this.suscription.unsubscribe()
+  }
+  
+  getAllUsers(){
+    this.suscription = this.userService.getUsers(this.enterpriseId || '').subscribe((data)=>{
+      this.users = data.map((user: any) => {
+        return{
+          id: user.payload.doc.id,
+          ...user.payload.doc.data(),
+          hidePass:true
+        }
+      })
+      console.log(this.users)
+    })
   }
 
   editUserState(id: string, isActive: boolean){
@@ -95,7 +109,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
         userType: 'user',
         pass:btoa(values.password),
         isActive: true,
-        enterpriseId: this.enterpriseId
+        enterpriseId: this.enterpriseId,
+        department: values.department,
       }
       this.userService.updateUser(values.id, actualUser).then(()=>{
         this.toastr.success('Usuario actualizado con éxito');
@@ -111,25 +126,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
       name: user.displayName,
       userName: user.userName,
       password: atob(user.pass),
-      id: user.id
+      id: user.id,
+      department: user.department
     }
     this.isEditing = true;
     this.openMyModal('new-user');
     this.newUserForm.reset(editForm)
   }
 
-  getAllUsers(){
-    this.suscription = this.userService.getUsers(this.enterpriseId || '').subscribe((data)=>{
-      this.users = data.map((user: any) => {
-        return{
-          id: user.payload.doc.id,
-          ...user.payload.doc.data(),
-          hidePass:true
-        }
-      })
-      console.log(this.users)
-    })
-  }
 
   addNewUser(event: Event){
     event.preventDefault()
@@ -142,10 +146,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
         pass:btoa(values.password),
         isActive: true,
         enterpriseId: this.enterpriseId,
+        department: values.department,
       }
       console.log(newUser)
       this.userService.addUser(newUser).then(()=>{
-        console.log('usuario creado con exito')
+        this.toastr.success('Usuario creado con éxito');
+        this.closeMyModal('new-user');
+      }).catch(()=>{
+        this.toastr.error('Error al crear el usuario','Error');
       })
     }
   }
@@ -155,6 +163,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
       name:['',[Validators.required]],
       userName: ['',[Validators.required]],
       password: ['',[Validators.required]],
+      department: ['',[Validators.required]],
       id:'',
     })
   }
@@ -182,4 +191,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   get passwordField(){
     return this.newUserForm.get('password');
   }
+  get departmentField(){
+    return this.newUserForm.get('department');
+  }
+
 }

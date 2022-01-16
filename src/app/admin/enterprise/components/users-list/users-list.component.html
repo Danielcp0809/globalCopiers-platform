@@ -35,6 +35,7 @@
                             <span *ngIf="row.hidePass" class="material-icons" matTooltip="Ver contraseña" (click)="toggleHidePass(i)">visibility</span>
                             <span *ngIf="!row.hidePass" class="material-icons" matTooltip="Ocultar contraseña" (click)="toggleHidePass(i)">visibility_off</span>
                         </td>
+                        <td data-label="Department" class="text-centered">{{row.department}}</td>
                         <td data-label="Estado" *ngIf="row.isActive" class="text-centered">
                             <!-- <label class="label label-success">Activo</label> -->
                             <span
@@ -108,6 +109,23 @@
                         placeholder="Ingrese una contraseña">
                     <div class="input_errors" *ngIf="passwordField?.touched">
                         <p *ngIf="passwordField?.hasError('required')"><strong>Este campo es requerido</strong></p>
+                    </div>
+                </div>
+                <div class="select-field">
+                    <label>DEPARTAMENTO</label>
+                    <select 
+                        name="department_field" 
+                        id="department_field"
+                        [class.input_field_error]="departmentField?.invalid && departmentField?.touched" 
+                        [class.input_field_correct]="departmentField?.valid && departmentField?.touched" 
+                        formControlName="department"
+                    >
+                        <option *ngFor="let option of departmentOptions">
+                            {{option}}
+                        </option>
+                    </select>
+                    <div class="input_errors" *ngIf="departmentField?.touched">
+                        <p *ngIf="departmentField?.hasError('required')"><strong>Este campo es requerido</strong></p>
                     </div>
                 </div>
            </form>

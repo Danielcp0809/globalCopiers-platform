@@ -21,7 +21,9 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
     machines: 0,
   }
   id: string | null
-  sub: Subscription
+  sub: Subscription;
+  departmentOptions = [];
+
   constructor(
     public appService: AppService,
     private route: ActivatedRoute,
@@ -56,6 +58,10 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.sub.unsubscribe()
+  }
+
+  setDepartmentOptions(options: any){
+    this.departmentOptions = options
   }
 
 }

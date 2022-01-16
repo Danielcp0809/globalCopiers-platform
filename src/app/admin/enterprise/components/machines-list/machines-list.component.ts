@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Input} from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -20,6 +20,7 @@ import Swal from 'sweetalert2'
 export class MachinesListComponent implements OnInit, OnDestroy {
 
   @Input() onwerInformation!:enterprise
+  @Output() departmentOptions = new EventEmitter<string[]>();
 
 
   newMachineForm!: FormGroup
@@ -61,6 +62,8 @@ export class MachinesListComponent implements OnInit, OnDestroy {
         }
       })
       console.log(this.machines)
+      const depOptions = this.machines.map( machine => machine.department)
+      this.departmentOptions.emit(depOptions.filter((opt, index, array) => array.indexOf(opt) == index))
     })
   }
 
