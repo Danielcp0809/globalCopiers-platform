@@ -6,7 +6,22 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 const routes: Routes = [
   {
     path:'',
-    component: SignInComponent
+    redirectTo:'user',
+    pathMatch: 'full'
+  },
+  {
+    path:'user',
+    component: SignInComponent,
+    data:{
+      type:'user'
+    }
+  },
+  {
+    path:'admin',
+    component: SignInComponent,
+    data:{
+      type:'admin'
+    }
   },
   {
     path:'registerbyadmin',

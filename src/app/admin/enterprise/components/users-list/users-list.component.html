@@ -120,7 +120,7 @@
                         [class.input_field_correct]="departmentField?.valid && departmentField?.touched" 
                         formControlName="department"
                     >
-                        <option *ngFor="let option of departmentOptions">
+                        <option *ngFor="let option of departmentOptions" value={{option}}>
                             {{option}}
                         </option>
                     </select>

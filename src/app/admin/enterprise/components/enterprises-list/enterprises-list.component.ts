@@ -40,7 +40,7 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
     this.buildNewEnterpriseForm();
     this.appService.routes = [{
       name:'Empresas',
-      url:'enterprises'
+      url:'admin/enterprises'
     }]
   }
 

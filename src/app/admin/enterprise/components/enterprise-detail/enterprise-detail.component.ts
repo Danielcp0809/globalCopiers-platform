@@ -43,11 +43,11 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
       this.appService.routes = [
         {
           name:'Empresas',
-          url:'enterprises'
+          url:'admin/enterprises'
         },
         {
           name:this.enterprise.name,
-          url:`enterprises/${this.enterprise.id}`
+          url:`admin/enterprises/${this.enterprise.id}`
         }
       ]
     }) 

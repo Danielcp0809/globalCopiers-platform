@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goTo(url:string){
-    this.router.navigate([`admin/${url}`])
+    this.router.navigate([`${url}`])
   }
 
 }

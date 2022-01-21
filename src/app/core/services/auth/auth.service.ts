@@ -48,4 +48,11 @@ userData: any
     return this.angularFireStorage.collection('users').doc(uid).valueChanges()
   }
 
+  getInfoUserByEmail(email: string, password: string){
+    return this.angularFireStorage.collection('users', data => data
+    .where('userName','==',email)
+    .where('pass','==',btoa(password)))
+    .valueChanges()
+  }
+
 }

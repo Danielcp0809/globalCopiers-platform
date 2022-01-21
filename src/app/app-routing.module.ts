@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/sign-in',
+    redirectTo:'/sign-in/user',
     pathMatch: 'full'
   },
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   {
     path:'user',
-    canActivate: [AdminGuard],
+    canActivate: [UserGuard],
     loadChildren: ()=>import('./user/user.module').then(m=>m.UserModule)
   }
 ];

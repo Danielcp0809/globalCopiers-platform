@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="user-machines">
+        <div class="user-machines-header">
+            <div class="header-field">
+                <label>{{'nombre de la empresa'| uppercase}}</label>
+                <h2>{{enterpriseData?.name }}</h2>
+            </div>
+            <div class="header-field">
+                <label>{{'Ubicacion'| uppercase}}</label>
+                <h2>{{(enterpriseData?.city || '') + '/' + (enterpriseData?.sector || '')}}</h2>
+            </div>
+            <div class="header-field">
+                <label>{{ userDepartment | uppercase}}</label>
+                <h2>{{'Oficina 1'}}</h2>
+            </div>
+            <div class="header-field">
+                <label>{{'Cantidad de equipos'| uppercase}}</label>
+                <h2>{{userMachines?.length}}</h2>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="user-machines-body">
+            <mat-card *ngFor="let machine of userMachines; index as i" class="machine">
+                <div class="machine-header">
+                    <div class="machine-number">
+                        <label>{{i+1}}</label>
+                    </div>
+                    <div class="machine-name">
+                        <label>{{machine.brand | uppercase}}</label>
+                    </div>
+                </div>
+                <div class="machine-status" style="background-color: var(--color_1);"></div>
+                <div class="machine-info">
+                    <div class="machine-prop">
+                        <div class="prop-label">
+                            <label>Modelo:</label>
+                        </div>
+                        <div class="prop-detail">
+                            <label>{{machine.model}}</label>
+                        </div>
+                    </div>
+                    <div class="machine-prop">
+                        <div class="prop-label">
+                            <label>N Serie:</label>
+                        </div>
+                        <div class="prop-detail">
+                            <label>{{machine.serial}}</label>
+                        </div>
+                    </div>
+                    <div class="machine-prop">
+                        <div class="prop-label">
+                            <label>IP:</label>
+                        </div>
+                        <div class="prop-detail">
+                            <label>{{machine.ip}}</label>
+                        </div>
+                    </div>
+                    <div class="machine-prop">
+                        <div class="prop-label">
+                            <label>Tipo:</label>
+                        </div>
+                        <div class="prop-detail">
+                            <label>{{machine.type}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="machine-button">
+                    <div mat-ripple class="button_primary md-close" (click)="openMachine(machine.ip)"><p>Ver Equipo</p></div>  
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
