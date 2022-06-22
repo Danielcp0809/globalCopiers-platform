@@ -22,8 +22,8 @@
 
         <div class="enterprise-tabs">
             <mat-tab-group color="accent" mat-align-tabs="start">
-                <mat-tab label="Equipos"><app-machines-list [onwerInformation]="enterprise"></app-machines-list></mat-tab>
-                <mat-tab label="Usuarios"><app-users-list></app-users-list></mat-tab>
+                <mat-tab label="Equipos"><app-machines-list [onwerInformation]="enterprise" (departmentOptions)="setDepartmentOptions($event)"></app-machines-list></mat-tab>
+                <mat-tab label="Usuarios"><app-users-list [departmentOptions]="departmentOptions" ></app-users-list></mat-tab>
             </mat-tab-group>
         </div>
     </div>

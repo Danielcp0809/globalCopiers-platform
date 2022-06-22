@@ -32,4 +32,8 @@ export class MachineService {
   getMachine(id: string){
     return this.firestore.collection('machines').doc(id).snapshotChanges()
   }
+
+  getUserMachines(enterpriseId: string, department:string){
+    return this.firestore.collection('machines', data => data.where('enterpriseId','==',enterpriseId).where('department','==',department)).snapshotChanges()
+  }
 }

@@ -9,6 +9,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card'
 
 
 
@@ -24,7 +25,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatRippleModule,
     MatTooltipModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule,
   ],
   exports:[
     FormsModule,
@@ -35,7 +37,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatRippleModule,
     MatTooltipModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule,
   ]
 })
 export class MaterialModule { }

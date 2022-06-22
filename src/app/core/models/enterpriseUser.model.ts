@@ -6,4 +6,5 @@ export interface enterpriseUser{
     userName: string | undefined | null,
     pass: string,
     userType: string,
+    department: string,
 }
