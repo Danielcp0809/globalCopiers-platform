@@ -48,7 +48,7 @@ export class MachinesListComponent implements OnInit {
             ...machineData.data()
           }
         })
-        console.log(this.userMachines)
+         
     })
   }
 

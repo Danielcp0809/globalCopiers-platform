@@ -46,7 +46,7 @@ export class AdminService {
     const data = {
       enterprisesCount: userData.enterprisesCount + 1
     }
-    console.log(userData)
+     
     this.firestore.collection('users').doc(userData.uid).update(data).then(()=>{
       this.authService.userData.enterprisesCount++;
       localStorage.setItem('user',JSON.stringify(this.authService.userData));

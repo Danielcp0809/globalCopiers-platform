@@ -39,7 +39,6 @@ export class EnterpriseDetailComponent implements OnInit, OnDestroy {
         isActive : data.payload.data()['isActive'],
         machines: data.payload.data()['machines'],
       }
-      console.log(this.enterprise)
       this.appService.routes = [
         {
           name:'Empresas',

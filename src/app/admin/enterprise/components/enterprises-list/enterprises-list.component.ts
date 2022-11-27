@@ -36,7 +36,6 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private adminService: AdminService
   ) { 
-    console.log(this.authService.userData)
     this.buildNewEnterpriseForm();
     this.appService.routes = [{
       name:'Empresas',
@@ -80,7 +79,6 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
           ...enterprise.payload.doc.data()
         }
       })
-      console.log(this.enterprises)
     })
   }
 
@@ -141,7 +139,6 @@ export class EnterprisesListComponent implements OnInit, OnDestroy {
     this.enterpriseService.updateEnterprise(id,data)
       .then(()=>{
       // this.toastr.success('Empresa actualizada con éxito', 'Actualizar');
-      console.log('Empresa actualizada')
     }).catch((err)=>{
       // this.toastr.error('Error al actualizar la empresa','Error');
       console.error(err)
