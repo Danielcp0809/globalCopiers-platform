@@ -62,7 +62,7 @@ export class RegisterByAdminComponent implements OnInit {
             .then(()=>{
               console.log('done')
               this.authService.logout()
-              this.router.navigate(['/sign-in'])
+              this.router.navigate(['/login'])
             })
             .catch((error)=>{
               this.isLoading=false;

@@ -6,11 +6,11 @@ import { UserGuard } from './guards/user.guard';
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/sign-in/user',
+    redirectTo:'/login/user',
     pathMatch: 'full'
   },
   {
-    path:'sign-in',
+    path:'login',
     loadChildren: ()=>import('./sign-in/sign-in.module').then(m=>m.SignInModule)
   },
   {
