@@ -37,7 +37,7 @@ export class SignInComponent implements OnInit {
       if(this.type === 'admin'){
         this.adminSignIn(values)
       }else if(this.type === 'user'){
-        console.log(this.type)
+         
         this.userSignIn(values)
       }
     }
@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
   adminSignIn(values: any){
     this.authService.login(values.email, values.password).then(
       result=>{
-        console.log(result)
+         
         const userData = this.authService.getInfoUser(result.user?.uid).subscribe(
           (res: any)=>{
             if(res){
@@ -65,14 +65,14 @@ export class SignInComponent implements OnInit {
   }
 
   userSignIn(values: any){
-    console.log('user', values)
+     
     this.authService.getInfoUserByEmail(values.email, values.password).subscribe(
       (res: any) => {
         if(res.length !== 0){
-          console.log(res[0])
+           
           localStorage.setItem('user',JSON.stringify(res[0]));
           this.authService.userData = res[0];
-          console.log('this.router.navigate(user)')
+           
           this.router.navigate(['user'])
         }else{
           this.toastr.error('Verifica tus credenciales e intentalo de nuevo','Usuario no encontrado',

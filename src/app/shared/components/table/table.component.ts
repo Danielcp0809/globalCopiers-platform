@@ -34,7 +34,7 @@ export class TableComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges){
     this.initialData = changes.initialData.currentValue,
     this.transformData()
-    console.log(this.initialData)
+     
   }
 
   ngOnInit(): void {
@@ -42,8 +42,8 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   transformData(){
-    console.log(this.titles);
-    console.log(this.initialData)
+     
+     
     this.data.titles = this.titles.map((title)=>{
       return title.displayName
     }) 
@@ -55,11 +55,11 @@ export class TableComponent implements OnInit, OnChanges {
       return arr
     })
     this.data.actions = this.actions
-    console.log(this.data)
+     
   }
 
   delete(number: number){
-    console.log(this.initialData[number].id)
+     
   }
 
 }

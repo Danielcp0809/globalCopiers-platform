@@ -43,7 +43,7 @@ export class RegisterByAdminComponent implements OnInit {
     if(this.registerForm.valid){
       this.isLoading=true;
       const values = this.registerForm.value
-      console.log(values)
+       
       this.authService.createUser(values.email, values.password)
         .then((result)=>{
           this.isLoading=false;
@@ -57,12 +57,12 @@ export class RegisterByAdminComponent implements OnInit {
             machinesCount: 0,
             enterprisesCount: 0
           }
-          console.log(newUser)
+           
           this.authService.setUserData(newUser)
             .then(()=>{
-              console.log('done')
+               
               this.authService.logout()
-              this.router.navigate(['/sign-in'])
+              this.router.navigate(['/login'])
             })
             .catch((error)=>{
               this.isLoading=false;

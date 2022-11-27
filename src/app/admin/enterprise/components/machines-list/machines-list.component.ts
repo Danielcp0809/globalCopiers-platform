@@ -61,7 +61,6 @@ export class MachinesListComponent implements OnInit, OnDestroy {
           ...machine.payload.doc.data()
         }
       })
-      console.log(this.machines)
       const depOptions = this.machines.map( machine => machine.department)
       this.departmentOptions.emit(depOptions.filter((opt, index, array) => array.indexOf(opt) == index))
     })
@@ -88,7 +87,6 @@ export class MachinesListComponent implements OnInit, OnDestroy {
     this.machineService.updateMachine(id,data)
     .then(()=>{
     // this.toastr.success('Empresa actualizada con éxito', 'Actualizar');
-    console.log('Empresa actualizada')
   }).catch((err)=>{
     // this.toastr.error('Error al actualizar la empresa','Error');
     console.error(err)

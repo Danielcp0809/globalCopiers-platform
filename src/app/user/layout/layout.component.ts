@@ -33,7 +33,7 @@ export class LayoutComponent implements OnInit {
 
   logOut(){
     this.authService.logout()
-    this.router.navigate(['sign-in'])
+    this.router.navigate(['login'])
   }
 
 }

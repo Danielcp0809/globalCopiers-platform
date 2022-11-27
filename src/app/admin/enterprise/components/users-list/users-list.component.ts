@@ -60,7 +60,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
           hidePass:true
         }
       })
-      console.log(this.users)
+       
     })
   }
 
@@ -71,7 +71,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
     }
     this.userService.updateUser(id,data)
       .then(()=>{
-        console.log('Usuario actualizado')
+         
       })
       .catch((err)=>{
         console.error(err)
@@ -148,7 +148,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
         enterpriseId: this.enterpriseId,
         department: values.department,
       }
-      console.log(newUser)
+       
       this.userService.addUser(newUser).then(()=>{
         this.toastr.success('Usuario creado con éxito');
         this.closeMyModal('new-user');
